@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import javafx.beans.value.ChangeListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -243,7 +244,7 @@ public class Server {
 		Alert a = new Alert(AlertType.CONFIRMATION, 
 							"This action will delete all Messages and all Media u ever received on this server. Are you sure you want to delete it anyway?",
 							ButtonType.YES, ButtonType.NO);
-		a.resultProperty().addListener(this::deleteServer);
+		a.resultProperty().addListener((ChangeListener<? super ButtonType>)this::deleteServer);
 		a.show();
 	}
 	

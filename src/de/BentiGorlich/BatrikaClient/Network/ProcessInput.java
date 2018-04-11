@@ -531,19 +531,7 @@ public class ProcessInput implements EventHandler<WorkerStateEvent>{
 								}
 								System.out.println(f.getAbsolutePath());
 								try {
-									if(!f.exists()) {
-										f.createNewFile();
-									}
-									FileOutputStream os = new FileOutputStream(f);
-									for(int i = 0; i<mediafragment.size(); i++) {
-										JSONArray curr = mediafragment.get(i);
-										byte[] bytes = new byte[curr.length()];
-										for(int j = 0; j<bytes.length; j++) {
-											bytes[j] = new Integer(curr.getInt(j)).byteValue();
-										}
-										os.write(bytes);
-									}
-									os.close();
+									writeMediaFragmentToFile(f, mediafragment);
 									if(mediafragment.ID != server.userID) {
 										User curr = server.getUser(mediafragment.ID);
 										curr.setProfilePicture(new Image("file:" + Main.db.ServerDirectory.getAbsolutePath() + "\\" + server.Servername + "\\profile_pictures\\" + mediafragment.ID + ".png"));
@@ -564,19 +552,7 @@ public class ProcessInput implements EventHandler<WorkerStateEvent>{
 									f = new File(Main.db.ServerDirectory.getAbsolutePath() + "\\" + server.Servername + "\\rooms\\" + mediafragment.name + ".png");
 									System.out.println(f.getAbsolutePath());
 									try {
-										if(!f.exists()) {
-											f.createNewFile();
-										}
-										FileOutputStream os = new FileOutputStream(f);
-										for(int i = 0; i<mediafragment.size(); i++) {
-											JSONArray curr = mediafragment.get(i);
-											byte[] bytes = new byte[curr.length()];
-											for(int j = 0; j<bytes.length; j++) {
-												bytes[j] = new Integer(curr.getInt(j)).byteValue();
-											}
-											os.write(bytes);
-										}
-										os.close();
+										writeMediaFragmentToFile(f, mediafragment);
 										Room r = null;
 										for(int j = 0; j<server.rooms.size(); j++) {
 											Room curr = server.rooms.get(j);
@@ -968,6 +944,21 @@ public class ProcessInput implements EventHandler<WorkerStateEvent>{
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
+	}
+
+	private void writeMediaFragmentToFile(File f, MediaFragmented mediafragment) throws IOException{
+		if(!f.exists()) {
+			f.createNewFile();
+		}
+		FileOutputStream os = new FileOutputStream(f);
+		for(int i = 0; i<mediafragment.size(); i++) {
+			JSONArray curr = mediafragment.get(i);
+			byte[] bytes = new byte[curr.length()];
+			for(int j = 0; j<bytes.length; j++) {
+				bytes[j] = new Integer(curr.getInt(j)).byteValue();
+			}
+			os.write(bytes);
+		}
+		os.close();
 	}
 }

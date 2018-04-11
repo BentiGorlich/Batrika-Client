@@ -3,6 +3,7 @@ package de.BentiGorlich.BatrikaClient.Windows;
 import java.util.Calendar;
 import java.util.List;
 
+import javafx.collections.ListChangeListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,7 +41,7 @@ public class RoomChat extends Chat{
 			TextMessage curr = r.conversation.get(i);
 			addMessage(curr);
 		}
-		r.conversation.addListener(this::addMessage);
+		r.conversation.addListener((ListChangeListener<? super TextMessage>)this::addMessage);
 		content.heightProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -111,7 +112,7 @@ public class RoomChat extends Chat{
 		}
 		mi.computeWrap();
 	}
-	
+	/*
 	public void addMessage(Change<? extends TextMessage> m) {
 		m.next();
 		if(m.wasAdded()) {
@@ -137,7 +138,7 @@ public class RoomChat extends Chat{
 				}
 			}
 		}
-	}
+	}*/
 	
 	public void seenMessages() {
 		for(int i = 0; i<unseenMessages.size(); i++) {

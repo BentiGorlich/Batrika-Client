@@ -3,6 +3,7 @@ package de.BentiGorlich.BatrikaClient.Windows;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 import de.BentiGorlich.BatrikaBasic.ImageButton;
 import de.BentiGorlich.BatrikaClient.Main;
@@ -239,8 +240,33 @@ public abstract class Chat extends BorderPane{
 		public abstract void send(ActionEvent e);
 		
 		public abstract void addMessage(TextMessage m);
-		
-		public abstract void addMessage(Change<? extends TextMessage> m);
+
+		public void addMessage(Change<? extends TextMessage> m) {
+			m.next();
+			if(m.wasAdded()) {
+				List<? extends TextMessage> temp = m.getAddedSubList();
+				for(int i = 0; i<temp.size();i++){
+					TextMessage curr = temp.get(i);
+					if(Main.static_content.getChildren().contains(this)) {
+						curr.seen = true;
+					}
+					addMessage(curr);
+				}
+			}else if(m.wasRemoved()){
+				List<? extends TextMessage> temp = m.getRemoved();
+				for(int i = 0; i<temp.size();i++){
+					TextMessage curr = temp.get(i);
+					for(int j = 0; j<mis.size(); j++) {
+						MessageItem curr_mi = mis.get(j);
+						if(curr_mi.textMessage.equals(curr)) {
+							content.getChildren().remove(curr_mi);
+							mis.remove(j);
+							break;
+						}
+					}
+				}
+			}
+		}
 		
 		public abstract void seenMessages() ;
 		

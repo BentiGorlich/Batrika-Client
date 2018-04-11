@@ -178,7 +178,7 @@ public class MessageItem extends HBox{
 			default: status.setText("---"); break;
 			case received_by_server: status.setText("^"); break;
 			case received_by_user: status.setText("<"); break;
-			case seen_by_client: status.setText("(°-°)"); break;
+			case seen_by_client: status.setText("(O-O)"); break;
 		}
 	}
 	
