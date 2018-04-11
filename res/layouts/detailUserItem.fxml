@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="main" xmlns="http://javafx.com/javafx/9.0.1"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<center>
+		<ScrollPane fitToWidth="true" BorderPane.alignment="CENTER">
+			<content>
+				<GridPane>
+					<columnConstraints>
+						<ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity"
+							minWidth="-Infinity" prefWidth="130.0" />
+						<ColumnConstraints hgrow="ALWAYS" />
+					</columnConstraints>
+					<rowConstraints>
+						<RowConstraints maxHeight="-Infinity" minHeight="-Infinity"
+							prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints vgrow="SOMETIMES" />
+						<RowConstraints maxHeight="-Infinity" minHeight="10.0"
+							prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints maxHeight="-Infinity" minHeight="10.0"
+							prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints maxHeight="-Infinity" minHeight="-Infinity"
+							prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints maxHeight="-Infinity" minHeight="10.0"
+							prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints maxHeight="-Infinity" minHeight="10.0"
+							prefHeight="30.0" vgrow="SOMETIMES" />
+					</rowConstraints>
+					<children>
+						<ImageView fx:id="profile_picture" pickOnBounds="true"
+							preserveRatio="true" GridPane.columnSpan="2" GridPane.halignment="CENTER"
+							GridPane.rowIndex="1" />
+						<Label fx:id="username" text="Label" GridPane.columnSpan="2">
+							<font>
+								<Font name="System Bold" size="18.0" />
+							</font>
+						</Label>
+						<Label text="Messages sent" GridPane.rowIndex="4">
+							<GridPane.margin>
+								<Insets left="10.0" />
+							</GridPane.margin>
+						</Label>
+						<Label text="Messages received" GridPane.rowIndex="5">
+							<GridPane.margin>
+								<Insets left="10.0" />
+							</GridPane.margin>
+						</Label>
+						<Label text="Nickname" GridPane.rowIndex="2">
+							<GridPane.margin>
+								<Insets left="10.0" />
+							</GridPane.margin>
+						</Label>
+						<Label fx:id="messages_sent" text="Label"
+							GridPane.columnIndex="1" GridPane.rowIndex="4">
+							<GridPane.margin>
+								<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+							</GridPane.margin>
+						</Label>
+						<Label fx:id="messages_received" text="Label"
+							GridPane.columnIndex="1" GridPane.rowIndex="5">
+							<GridPane.margin>
+								<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+							</GridPane.margin>
+						</Label>
+						<GridPane fx:id="nickname" GridPane.columnIndex="1"
+							GridPane.rowIndex="2">
+							<columnConstraints>
+								<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
+									prefWidth="100.0" />
+								<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES"
+									maxWidth="-Infinity" minWidth="30.0" prefWidth="60.0" />
+							</columnConstraints>
+							<rowConstraints>
+								<RowConstraints minHeight="10.0" prefHeight="30.0"
+									vgrow="SOMETIMES" />
+							</rowConstraints>
+							<children>
+								<Label fx:id="nickname_label" text="Label">
+									<GridPane.margin>
+										<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+									</GridPane.margin>
+								</Label>
+								<TextField fx:id="nickname_text" onAction="#save_nickname"
+									visible="false">
+									<GridPane.margin>
+										<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+									</GridPane.margin>
+								</TextField>
+								<FlowPane fx:id="buttons" prefHeight="200.0" prefWidth="200.0"
+									GridPane.columnIndex="1" GridPane.halignment="CENTER"
+									GridPane.valignment="CENTER" />
+							</children>
+						</GridPane>
+						<Label text="Old Names" GridPane.rowIndex="3">
+							<GridPane.margin>
+								<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+							</GridPane.margin>
+						</Label>
+						<Label fx:id="oldnames" text="Label" GridPane.columnIndex="1"
+							GridPane.rowIndex="3">
+							<GridPane.margin>
+								<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+							</GridPane.margin>
+						</Label>
+					</children>
+				</GridPane>
+			</content>
+		</ScrollPane>
+	</center>
+</BorderPane>
